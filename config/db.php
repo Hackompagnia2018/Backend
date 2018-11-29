@@ -7,10 +7,10 @@
  */
 
 // Local Data
-$host = 'localhost:3307';
-$dbname = 'hack2018';
+$host = 'localhost:3306';
+$dbname = 'res_db';
 $user = 'root';
-$pass = 'root';
+$pass = 'test';
 
 // Server Data
 //$host = 'http://90.147.188.51/RES/backend/public/';
