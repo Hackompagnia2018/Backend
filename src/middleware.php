@@ -32,15 +32,9 @@ $mw = function (Request $request, Response $response, $next) use ($app) {
     }
     $putReq = substr($request->getRequestTarget(), 0, 21);
     if (!((array)$this->token->getTokenInfo())['https://hack2018api.com/email']) {
-        if (($request->getRequestTarget() === '/user/post/credentials' && $request->getMethod() === 'POST') ||
-            ($request->getRequestTarget() === '/user/get/credentials' && $request->getMethod() === 'GET') ||
-            ($putReq === '/user/put/credentials' && $request->getMethod() === 'PUT')) {
-
-        } else {
-            header('HTTP/1.0 401 Unauthorized');
-            header('Content-Type: application/json; charset=utf-8');
-            return $response->withJson(array("message" => "No mail verified"));
-        }
+        header('HTTP/1.0 401 Unauthorized');
+        header('Content-Type: application/json; charset=utf-8');
+        return $response->withJson(array("message" => "No mail verified"));
     }
     //Set Group
     $group = new Classes\Group($request);
