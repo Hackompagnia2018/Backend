@@ -34,6 +34,22 @@ $app->group('/user', function () {
     });
 //____________________________________________
     
+//_________PUT_______________________________
+    $this->group('/put', function () {
+        $this->put('/credentials/{name}/{surname}/{cell}', function(Request $request, Response $response, $args){
+            $name = $args['name'];
+            $surname = $args['surname'];
+            $cell = $args['cell'];
+            $result = $this->db->query("UPDATE users SET name = '$name', surname = '$surname', cell = '$cell' WHERE id = '$this->token_id'");
+            if(!$result){
+                return $response->withJson(false,422);
+            } else {
+                return $response->withJson($result ,200);
+            }
+        });
+    });
+//____________________________________________
+    
 //__________DELETE____________________________
     $this->group('/delete', function () {
 
