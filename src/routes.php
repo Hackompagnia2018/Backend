@@ -9,7 +9,10 @@ $app->group('/user', function () {
         $this->get('/sale/{prov}/{product}', function (Request $request, Response $response, $args){
             $prov = $args['prov'];
             $product = $args['product'];
-            $result = $this->db->query("SELECT * FROM prod_sale WHERE name_prod = '$product', '$prov'")->fetchAll();
+            $result = $this->db->query("SELECT * FROM prod_sale 
+                                        WHERE name_prod = '$product' 
+                                        AND province = '$prov'
+                                        AND status = 'available'")->fetchAll();
             if(!$result){
                 return $response->withJson(false,422);
             } else {
@@ -39,8 +42,9 @@ $app->group('/user', function () {
             $province = $newSale['province'];
             $region = $newSale['region'];
             $sendType = $newSale['send_type'];
-            $result = $this->db->query("INSERT INTO prod_sale(seller, name_prod, region, province, address, send_type) 
-                              VALUES ('$this->token_id', '$product', '$region','$province', '$address', '$sendType')");
+            $title = $newSale['title'];
+            $result = $this->db->query("INSERT INTO prod_sale(seller, name_prod, region, province, address, send_type, title) 
+                              VALUES ('$this->token_id', '$product', '$region','$province', '$address', '$sendType', '$title')");
             if(!$result){
                 return $response->withJson(false,422);
             } else {
