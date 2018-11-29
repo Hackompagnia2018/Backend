@@ -24,7 +24,7 @@ $app->group('/user', function () {
 //_____________POST__________________________
      $this->group('/post', function () {
         $this->post('/credentials', function(Request $request, Response $response){
-           $result = $this->db->query("INSERT INTO users(id, mail) VALUES ('$this->token_id','$this->token_mail')");
+           $result = $this->db->query("INSERT INTO suggestions(id) VALUES ('$this->token_id')");
             if(!$result){
                 return $response->withJson(false,422);
                 } else {
@@ -36,11 +36,9 @@ $app->group('/user', function () {
     
 //_________PUT_______________________________
     $this->group('/put', function () {
-        $this->put('/credentials/{name}/{surname}/{cell}', function(Request $request, Response $response, $args){
-            $name = $args['name'];
-            $surname = $args['surname'];
+        $this->put('/credentials/{cell}', function(Request $request, Response $response, $args){
             $cell = $args['cell'];
-            $result = $this->db->query("UPDATE users SET name = '$name', surname = '$surname', cell = '$cell' WHERE id = '$this->token_id'");
+            $result = $this->db->query("UPDATE suggestions SET cell = '$cell' WHERE id = '$this->token_id'");
             if(!$result){
                 return $response->withJson(false,422);
             } else {
