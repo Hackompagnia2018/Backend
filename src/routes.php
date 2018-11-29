@@ -6,7 +6,7 @@ use Slim\Http\Response;
 // Routes
 
 //----------------USER-----------------------------------
-
+//______________GET_____________________________
 $app->group('/user', function () {
     $this->group('/get', function () {
         $this->get('/credentials', function (Request $request, Response $response){
@@ -19,11 +19,17 @@ $app->group('/user', function () {
             }
        });
     });
-
+//______________________________________________
+    
+//__________DELETE____________________________
     $this->group('/delete', function () {
 
     });
-})->add($mw);
+//_____________________________________________
+    
+})->add($mw); 
+
+//---------END USER---------------------------
 
 //--------------STAFF-------------------------
 
