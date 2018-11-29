@@ -1,4 +1,5 @@
 <?php
+require '../config/db.php';
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -14,6 +15,13 @@ return [
             'name' => 'slim-app',
             'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
+        ],
+        // Database connection settings
+        "db" => [
+            "host" => $host,
+            "dbname" => $dbname,
+            "user" => $user,
+            "pass" => $pass
         ],
     ],
 ];
