@@ -30,7 +30,7 @@ $app->group('/user', function () {
             if(!$result){
                 return $response->withJson(false,422);
                 } else {
-                return $response->withJson($cell ,200);
+                return $response->withJson(true ,200);
             }
         });
 
