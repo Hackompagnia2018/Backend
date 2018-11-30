@@ -41,9 +41,11 @@ $app->group('/user', function () {
             $province = $newSale['province'];
             $region = $newSale['region'];
             $sendType = $newSale['send_type'];
+            $quantity = $newSale['quantity'];
+            $price = $newSale['price'];
             $title = $newSale['title'];
-            $result = $this->db->query("INSERT INTO prod_sale(seller, name_prod, region, province, address, send_type, title) 
-                              VALUES ('$this->token_id', '$product', '$region','$province', '$address', '$sendType', '$title')");
+            $result = $this->db->query("INSERT INTO prod_sale(seller, name_prod, region, province, address, send_type, title, quantity, price) 
+                              VALUES ('$this->token_id', '$product', '$region','$province', '$address', '$sendType', '$title', '$quantity', '$price')");
             if(!$result){
                 return $response->withJson(false,422);
             } else {
