@@ -24,14 +24,13 @@ $app->group('/user', function () {
     $this->group('/post', function () {
 
         $this->post('/suggestions', function(Request $request, Response $response){
-            $suggestion = $request->getParsedBody();
-            $cell = $suggestion['cell'];
+            $cell = $request->getParsedBody()['contact'];
            $result = $this->db->query("INSERT INTO suggestions(id, cell) 
                                        VALUES ('$this->token_id', '$cell')");
             if(!$result){
                 return $response->withJson(false,422);
                 } else {
-                return $response->withJson(true ,200);
+                return $response->withJson($cell ,200);
             }
         });
 
